@@ -1,0 +1,66 @@
+{
+  "name": "react-custom-soundcloud",
+  "version": "1.0.1",
+  "description": "React soundcloud player with style",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "webpack --config webpack.config --progress --colors -p",
+    "lint": "eslint src/**/*.js",
+    "storybook": "start-storybook"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matswainson/react-custom-soundcloud.git"
+  },
+  "keywords": [
+    "react",
+    "custom",
+    "soundcloud",
+    "player",
+    "react soundcloud player",
+    "soundcloud player",
+    "react soundcloud",
+    "react sound cloud",
+    "react sound cloud player"
+  ],
+  "author": "Mat Swainson <mat@matswainson.com> (http://matswainson.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/matswainson/react-custom-soundcloud/issues"
+  },
+  "homepage": "https://github.com/matswainson/react-custom-soundcloud#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.8.3",
+    "@babel/core": "^7.8.3",
+    "@babel/polyfill": "^7.8.3",
+    "@babel/preset-env": "^7.8.3",
+    "@babel/preset-es2015": "^7.0.0-beta.53",
+    "@babel/preset-react": "^7.8.3",
+    "@storybook/react": "^5.3.6",
+    "@typescript-eslint/eslint-plugin": "2.x",
+    "@typescript-eslint/parser": "2.x",
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "10.x",
+    "babel-loader": "^8.0.6",
+    "css-loader": "^3.4.2",
+    "eslint": "6.x",
+    "eslint-config-react-app": "^5.1.0",
+    "eslint-plugin-flowtype": "3.x",
+    "eslint-plugin-import": "2.x",
+    "eslint-plugin-jsx-a11y": "6.x",
+    "eslint-plugin-react": "7.x",
+    "eslint-plugin-react-hooks": "1.x",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "postcss-loader": "^3.0.0",
+    "react": "^16.12.0",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
+  },
+  "peerDependencies": {
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
+  },
+  "dependencies": {
+    "classnames": "^2.2.6"
+  }
+}
