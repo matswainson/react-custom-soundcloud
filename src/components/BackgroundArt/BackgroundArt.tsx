@@ -1,8 +1,12 @@
 import React from 'react';
 
-const BackgroundArt = (props) => {
+interface Props {
+  background: string;
+}
+
+const BackgroundArt: React.FC<Props> = (props) => {
   const { background } = props;
-  const getBackgroundImage = () => {
+  const getBackgroundImage = (): object => {
     return { backgroundImage: `url(${background})` };
   }
   return <div

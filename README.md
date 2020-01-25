@@ -15,7 +15,7 @@ import 'react-custom-soundcloud/dist/style.css';
 const MyComponent = () => {
   return <SoundCloud
     track="194881641"
-    mini="true"
+    mini={true}
   />;
 }
 ```
@@ -35,5 +35,5 @@ Track or playlist IDs can be found from Soundcloud embed player URLs
 
 * Chrome
 * Firefox
-* Internet Explorer 9+
+* Internet Explorer 10 +
 * Opera

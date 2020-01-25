@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import classnames from 'classnames';
+import { Soundcloud } from '../../types';
 
-const PlayButton = (props) => {
+interface Props {
+  soundcloud: Soundcloud;
+  trackPlaying: boolean;
+}
+
+const PlayButton: FunctionComponent<Props> = (props) => {
   const { soundcloud, trackPlaying } = props;
-  const playPause = () => {
+  const playPause = (): void => {
     soundcloud.isPaused((paused) => {
       if (paused) {
         soundcloud.play();

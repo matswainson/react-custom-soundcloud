@@ -1,8 +1,20 @@
 import React from 'react';
+import {
+  SetCurrentTrack,
+  Soundcloud,
+  Track
+} from '../../types';
 
-const PrevButton = (props) => {
+interface Props {
+  setCurrentTrack: SetCurrentTrack;
+  soundcloud: Soundcloud;
+  sounds: Track[];
+  trackIndex: number;
+}
+
+const PrevButton: React.FC<Props> = (props) => {
   const { setCurrentTrack, soundcloud, sounds, trackIndex } = props;
-  const prevTrack = () => {
+  const prevTrack = (): void => {
     soundcloud.isPaused(function(paused){
       if (paused) {
         soundcloud.prev().pause();

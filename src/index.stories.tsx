@@ -1,38 +1,38 @@
-import React from 'react';
-import SoundCloud from './';
+import React, { FunctionComponent } from 'react';
+import SoundCloud from '.';
 
 const fontStack = 'BlinkMacSystemFont,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif';
 
-const StyleWrapper = (props) => {
+const StyleWrapper: FunctionComponent = (props) => {
   return <div style={{fontFamily: fontStack}}>{props.children}</div>
 };
 
 export default { title: 'SoundCloud' };
 
-export const playlist = () => (
+export const playlist: FunctionComponent= () => (
   <StyleWrapper>
     <SoundCloud
       playlist="73448639" />
   </StyleWrapper>
 );
 
-export const standard = () => (
+export const standard: FunctionComponent = () => (
   <StyleWrapper>
     <SoundCloud
       track="370226924" />
-  </StyleWrapper>
+    </StyleWrapper>
 );
 
-export const mini = () => (
+export const mini: FunctionComponent = () => (
   <StyleWrapper>
     <SoundCloud
       track="194881641"
-      mini="true"
+      mini={true}
     />
   </StyleWrapper>
 );
 
-export const lightTheme = () => (
+export const lightTheme: FunctionComponent = () => (
   <StyleWrapper>
     <SoundCloud
       playlist="73448639"

@@ -1,4 +1,19 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, {
+  FunctionComponent,
+  useEffect,
+  useRef,
+  useState
+} from 'react';
+import {
+  WidgetInitialiser,
+  SoundCloudEvents,
+  SoundCloudProps,
+  SetCurrentTrack,
+  Soundcloud,
+  Track,
+  Progress,
+  CurrentTrack
+} from './types';
 import classnames from 'classnames';
 import { soundcloudApi } from './utils/consts';
 import loadScript from './utils/loadScript';
@@ -11,30 +26,35 @@ import Shade from './components/Shade';
 import Wave from './components/Wave';
 import './index.css';
 
-const SoundCloud = (props) => {
+const SoundCloud: FunctionComponent<SoundCloudProps> = (props) => {
 
-  const { mini, track, playlist, theme } = props;
+  const { mini, track, playlist } = props;
+  let { theme } = props;
 
   if (!track && !playlist) {
     throw new Error('Prop track or playlist required.');
   }
 
-  let [sounds, setSounds] = useState([]),
-      [playProgress, setPlayProgress] = useState(0),
-      [percentPlayed, setPercentPlayed] = useState(0),
-      [currentTrack, setTrack] = useState(null),
-      [trackPlaying, setTrackPlaying] = useState(false),
-      [trackIndex, setTrackIndex] = useState(0),
-      [soundcloud, setSoundcloud] = useState(null);
-  const iframeRef = useRef(null);
+  if (theme !== 'light') {
+    theme = 'dark';
+  }
 
-  const setCurrentTrack = (track, index) => {
+  const [sounds, setSounds] = useState<Track[]>([]),
+        [playProgress, setPlayProgress] = useState<Progress>({ currentPosition: 0 }),
+        [percentPlayed, setPercentPlayed] = useState<number>(0),
+        [currentTrack, setTrack] = useState<CurrentTrack | null>(null),
+        [trackPlaying, setTrackPlaying] = useState<boolean>(false),
+        [trackIndex, setTrackIndex] = useState<number>(0),
+        [soundcloud, setSoundcloud] = useState<Soundcloud | null>(null);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+
+  const setCurrentTrack: SetCurrentTrack = (track, index): void => {
     setTrack({
       artist: track.user.username,
-      artist_url: track.user.permalink_url,
+      artistUrl: track.user.permalink_url,
       background: track.artwork_url || (track.user && track.user.avatar_url) || '',
       duration: track.duration,
-      permalink_url: track.permalink_url,
+      permalinkUrl: track.permalink_url,
       title: track.title
     });
     setTrackIndex(index);
@@ -42,14 +62,16 @@ const SoundCloud = (props) => {
 
   useEffect(() => {
     if (!currentTrack) return;
-    var position = Number(((playProgress.currentPosition / currentTrack.duration) * 100).toFixed(1));
+    const position = Number(((playProgress.currentPosition / currentTrack.duration) * 100).toFixed(1));
     setPercentPlayed(position);
   }, [currentTrack, playProgress]);
 
   useEffect(() => {
     loadScript(soundcloudApi, () => {
-      // eslint-disable-next-line no-undef
-      setSoundcloud(SC.Widget(iframeRef.current));
+      if (iframeRef.current) {
+        const soundcloudIframe = (window.SC.Widget as WidgetInitialiser)(iframeRef.current);
+        setSoundcloud(soundcloudIframe);
+      }
     })
   }, []);
 
@@ -64,14 +86,13 @@ const SoundCloud = (props) => {
         setCurrentTrack(tracks[0], 0);
       });
     });
-    // eslint-disable-next-line no-undef
-    soundcloud.bind(SC.Widget.Events.PAUSE, () => {
+    soundcloud.bind((window.SC.Widget as SoundCloudEvents).Events.PAUSE, () => {
       setTrackPlaying(false);
     });
-    // eslint-disable-next-line no-undef
-    soundcloud.bind(SC.Widget.Events.PLAY, setTrackPlaying, true);
-    // eslint-disable-next-line no-undef
-    soundcloud.bind(SC.Widget.Events.PLAY_PROGRESS, function(progress) {
+    soundcloud.bind((window.SC.Widget as SoundCloudEvents).Events.PLAY, () => {
+      setTrackPlaying(true);
+    });
+    soundcloud.bind((window.SC.Widget as SoundCloudEvents).Events.PLAY_PROGRESS, (progress: Progress) => {
       setPlayProgress(progress);
     });
   }, [soundcloud]);
@@ -82,8 +103,8 @@ const SoundCloud = (props) => {
         <div className={classnames('sc-player__current', {'sc-player--mini': mini})}>
           <Title
             artist={currentTrack.artist}
-            artist_url={currentTrack.artist_url}
-            permalink={currentTrack.permalink_url}
+            artistUrl={currentTrack.artistUrl}
+            permalink={currentTrack.permalinkUrl}
             title={currentTrack.title}
           />
           <Buttons

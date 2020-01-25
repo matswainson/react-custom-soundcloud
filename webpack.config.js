@@ -4,7 +4,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const extractCSS = new ExtractTextPlugin('style.css');
 
 const config = {
-  entry: './src/index.js',
+  entry: './src/index.tsx',
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'index.js',
@@ -12,12 +12,16 @@ const config = {
     globalObject: 'this',
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.css']
+    extensions: ['.ts', '.tsx', '.css']
   },
   module: {
     rules: [{
       test: /\.(js|jsx)$/,
       use: 'babel-loader',
+      exclude: /node_modules/
+    }, {
+      test: /\.(ts|tsx)$/,
+      use: 'awesome-typescript-loader',
       exclude: /node_modules/
     }, {
       test: /\.css$/,
