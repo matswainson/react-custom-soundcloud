@@ -1,12 +1,13 @@
 {
   "name": "react-custom-soundcloud",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "React soundcloud player with style",
   "main": "dist/index.js",
   "scripts": {
     "build": "webpack --config webpack.config --progress --colors -p",
     "lint": "eslint src/**/*.tsx",
-    "storybook": "start-storybook"
+    "storybook": "start-storybook",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -39,7 +40,9 @@
     "@storybook/react": "^5.3.6",
     "@types/classnames": "^2.2.9",
     "@types/events": "^3.0.0",
+    "@types/jest": "^24.9.1",
     "@types/react": "^16.9.18",
+    "@types/react-test-renderer": "^16.9.2",
     "@typescript-eslint/eslint-plugin": "^2.17.0",
     "@typescript-eslint/parser": "^2.17.0",
     "awesome-typescript-loader": "^5.2.1",
@@ -55,9 +58,12 @@
     "eslint-plugin-react": "7.x",
     "eslint-plugin-react-hooks": "1.x",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "jest": "^25.1.0",
     "postcss-loader": "^3.0.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
+    "react-test-renderer": "^16.12.0",
+    "ts-jest": "^25.0.0",
     "typescript": "^3.7.5",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10"

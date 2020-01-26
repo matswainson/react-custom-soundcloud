@@ -9,6 +9,7 @@
     "jsx": "react",
     "moduleResolution": "node",
     "baseUrl": "./src/",
+    "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
@@ -22,7 +23,8 @@
     "emitDecoratorMetadata": true
   },
   "include": [
-    "./src/**/*"
+    "./src/**/*",
+    "./test/**/*"
   ],
   "exclude": [
     "./node_modules",

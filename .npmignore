@@ -1,4 +1,9 @@
+__mocks__/
+__tests__/
 babel.config.json
+jest.config.js
+postcss.config.js
 src
+tsconfig.json
 webpack.config.js
 yarn.lock
