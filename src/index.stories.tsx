@@ -40,3 +40,10 @@ export const lightTheme: FunctionComponent = () => (
     />
   </StyleWrapper>
 );
+
+export const multiplePlayers: FunctionComponent = () => (
+  <StyleWrapper>
+    <SoundCloud track="370226924" />
+    <SoundCloud track="194881641" />
+  </StyleWrapper>
+);

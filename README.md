@@ -1,4 +1,4 @@
-![react-custom-soundcloud](http://matswainson.com/wp-content/uploads/2020/01/react-custom-soundcloud.png)
+![react-custom-soundcloud](https://matswainson.com/images/github/soundcloud.png)
 
 # React custom soundcloud player
 
@@ -6,7 +6,7 @@ Custom Soundcloud player supporting single tracks & playlists
 
 ### Example
 
-![react-custom-soundcloud-2](http://matswainson.com/wp-content/uploads/2020/01/react-custom-soundcloud-2.png)
+![react-custom-soundcloud-2](https://matswainson.com/images/github/soundcloud-player.png)
 
 ```js
 import SoundCloud from 'react-custom-soundcloud';
